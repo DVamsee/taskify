@@ -35,7 +35,7 @@ def login(request, *args, **kwargs):
             auth.login(request,user)
             #messages.success(request,'login successful')
             return redirect('/')
-    messages.warning(request,'login failed: invalid username or password')
+    #messages.warning(request,'login failed: invalid username or password')
     return render(request, 'login.html',{'form':form})
 
 

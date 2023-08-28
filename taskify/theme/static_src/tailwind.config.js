@@ -42,7 +42,12 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            spacing: {
+                '100': '42rem',
+                '180': '68rem',
+              }
+        },
     },
     plugins: [
         /**

@@ -81,9 +81,9 @@ function renderCalendar() {
         calendarHTML += "<tr>";
         for (let j = 0; j < 7; j++) {
             if ((i === 0 && j < firstDay.getDay()) || dayCounter > daysInMonth) {
-                calendarHTML += "<td class='p-2 mx-4'></td>";
+                calendarHTML += "<td class='px-2 py-1 '></td>";
             } else {
-                calendarHTML += `<td class="p-2 mx-4">${dayCounter}</td>`;
+                calendarHTML += `<td class="px-2 py-1 ">${dayCounter}</td>`;
                 dayCounter++;
             }
         }

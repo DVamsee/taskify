@@ -8,11 +8,9 @@
 {%block body %}
 <header class="text-black body-font">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row">
-      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-red-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">Taskify</span>
+      <a href="/" class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <img class="h-8 w-8 object-cover object-center rounded-full " src="{% static 'img/logo.png' %}">
+        <span class="ml-3 pb-1 text-2xl">Taskify</span>
       </a>
       
      <div class="hidden sm:block sm:ml-auto">
@@ -30,20 +28,20 @@
     </div>
 </header>
 
-  <div class="mt-2  sm:mt-7 ">
+  <div class="mt-2  ">
     {% if user.is_authenticated %}
     <div class="h-full">
-      <div class="mx-1 sm:mx-4 md:mx-6 grid grid-cols-7 gap-4 sm:h-full">
+      <div class="mx-1 sm:mx-4 md:mx-6 grid grid-cols-7 gap-4 sm:h-5/6">
       
-        <div class="hidden  col-span-6 sm:col-span-2 sm:grid grid-flow-row gap-4">
+        <div class="hidden  col-span-6 sm:col-span-2 sm:grid grid-flow-row gap-4 h-80">
           <div class="bg-stone-200 rounded-xl">
             <p class="text-black text-left ml-2 capitalize mt-2 px-3 py-1 font-medium text-3xl">profile</p>
             <img class="my-5 mx-auto  h-24 w-24 rounded-full" src="{% static 'img/profile.png'%}" alt="profile picture" >
             <h1 class="mx-4 my-3 text-gray-900 font-medium text-2xl"> Name : <span class=" text-black font-bold capitalize">{{user.first_name}} {{user.last_name}}</span> </h1>
             <h1 class="mx-4 my-3 text-gray-900 font-medium text-2xl"> Mail : <span class=" text-black font-medium ">{{user.email}}</span> </h1>
             <div class="ml-2 my-4 mt-5">
-              <a href="#" class="inline-flex ml-2 text-black tracking-wider bg-blue-300 font-medium capitalize rounded-lg border-0 py-2 px-4  focus:outline-none hover:bg-blue-400 text-lg">edit </a>
-              <a href="#" class="inline-flex mx-2   text-black tracking-wider bg-red-500 font-medium rounded-lg border-0 py-2 px-6 capitalize  focus:outline-none hover:bg-red-600 text-lg">Add task</a>
+              <a href="#" class="inline-flex ml-2 text-white tracking-wider bg-blue-500 font-medium capitalize rounded-lg border-0 py-1 px-4 shadow-lg  focus:outline-none hover:-translate-y-0.5 transform transistion active:bg-blue-400 hover:bg-blue-300 hover:shadow-xl text-lg">edit </a>
+              <a href="#" class="inline-flex mx-2   text-white tracking-wider bg-red-600 font-medium rounded-lg border-0 py-1 px-4 capitalize shadow-lg  focus:outline-none hover:-translate-y-0.5 transform transistion active:bg-red-400 hover:bg-red-500 hover:shadow-xl text-lg">Add task</a>
             </div>
 
           </div>
@@ -67,16 +65,16 @@
               </div>  
               
             </div>
-            <table class="mt-6 mx-auto table-auto">
+            <table class="mt-4 mx-auto table-auto">
                 <thead>
                     <tr>
-                        <th class="text-lg text-gray-900 mx-4">Sun</th>
-                        <th class="text-lg text-gray-900 mx-4">Mon</th>
-                        <th class="text-lg text-gray-900 mx-4">Tue</th>
-                        <th class="text-lg text-gray-900 mx-4">Wed</th>
-                        <th class="text-lg text-gray-900 mx-4">Thu</th>
-                        <th class="text-lg text-gray-900 mx-4">Fri</th>
-                        <th class="text-lg text-gray-900 mx-4">Sat</th>
+                        <th class="text-lg text-gray-900 px-2">Sun</th>
+                        <th class="text-lg text-gray-900 px-2">Mon</th>
+                        <th class="text-lg text-gray-900 px-2">Tue</th>
+                        <th class="text-lg text-gray-900 px-2">Wed</th>
+                        <th class="text-lg text-gray-900 px-2">Thu</th>
+                        <th class="text-lg text-gray-900 px-2">Fri</th>
+                        <th class="text-lg text-gray-900 px-2">Sat</th>
                     </tr>
                 </thead>
                 <tbody id="calendarBody">
@@ -84,130 +82,192 @@
                 </tbody>
             </table>
           </div>
+          <div class="col-span-6 sm:hidden">
+
+            <a href="#" class="inline-flex mr-2 text-white tracking-wider bg-blue-300 font-medium rounded-lg border-0 py-2 px-4  focus:outline-none hover:bg-blue-200 text-lg">Profile</a>
+            <a href="#" class="inline-flex mx-2   text-white tracking-wider bg-violet-300 font-medium rounded-lg border-0 py-2 px-6  focus:outline-none hover:bg-violet-200 text-lg">Calender</a>
+          
+  
+          </div>
         </div>
 
-        <div class="col-span-6 sm:hidden">
-
-          <a href="#" class="inline-flex mr-2 text-black tracking-wider bg-blue-300 font-medium rounded-lg border-0 py-2 px-4  focus:outline-none hover:bg-blue-200 text-lg">Profile</a>
-          <a href="#" class="inline-flex mx-2   text-black tracking-wider bg-violet-300 font-medium rounded-lg border-0 py-2 px-6  focus:outline-none hover:bg-violet-200 text-lg">Calender</a>
-        
-
-        </div>
         <!--tasks-->
-        <div class="col-span-6 sm:col-span-5 bg-teal-100 rounded-xl overflow-y-auto h-full ">
-          <h1 class="text-black text-left ml-2 capitalize mt-2 px-3 py-1 font-medium text-3xl">tasks</h1>
-          {% for task in tasks %}
-            <!-- Task Card -->
-            <div class="mx-4 mt-4 bg-white rounded-lg shadow-lg p-4 relative">
-              <div class="flex justify-between items-center">
-                <p id="taskTitle" data="{{task.id}}" class="text-xl font-bold text-gray-900">{{ task.title }}</p>
-                  <div class="flex space-x-2">
-                  
-                    <!-- Status Change Dropdown -->
-                    <div class="mx-4 relative inline-block text-gray-600">
-                      <button class="mx-4text-gray-600 hover:text-gray-800 focus:outline-none status-dropdown-button "id="statusDropdownButton">
-                        <img src="{% static 'img/status.png'%}" alt="comments" class="h-8 w-8">
-                      </button>
-                      <!-- Dropdown Content (Status Options) -->
-                      <div class="hidden absolute z-10 mt-2 -ml-16 w-36 bg-white border border-gray-300 shadow-lg rounded-lg status-dropdown" id="statusDropdown">
-                          <ul class="py-2">
-                              <li class="bg-red-100 mx-2 rounded-lg">
-                                <a href="#" class=" text-left py-2 px-4 mt-2">Pending</a>
-                              </li>
-                              <li class="bg-orange-100 mx-2 rounded-lg mt-2">
-                                <a href="#" class=" text-left px-4 py-2 mt-2">In-Progress</a>
-                              </li>
-                              <li class="bg-green-100 mx-2 rounded-lg mt-2">
-                                <a href="#" class="text-left px-4 py-2 mt-2">Completed</a>
-                              </li>
-                              
-                              <!-- Add more status options here -->
-                          </ul>
-                      </div>
-                    </div>
-                    
-                    <!-- Priority Change Dropdown -->
-                    <div class="mx-4 relative inline-block text-gray-600">
-                      <button class="mx-4 text-gray-600 hover:text-gray-800 focus:outline-none priority-dropdown-button" >
-                          <img src="{% static 'img/priority.png'%}" alt="priority" class="h-8 w-8">
-                      </button>
-                      <!-- Dropdown Content (Status Options) -->
-                      <div class="hidden absolute z-10 mt-2 -ml-16 w-32 bg-white border border-gray-300 shadow-lg rounded-lg priority-dropdown">
-                          <ul class="py-2">
-                            <li class="bg-red-200 mx-2 rounded-lg mt-2">
-                              <a href="#" class="w-full font-medium text-left px-4 py-2">High</a>
-                            </li>
-                            <li class="bg-red-100 mx-2 rounded-lg mt-2">
-                              <a href="#" class="w-full font-medium text-left px-4 py-2">Medium</a>
-                            </li>
-                            <li class="bg-red-50 mx-2 rounded-lg mt-2">
-                              <a href="#" class="w-full font-medium text-left px-4 py-2">Low</a>
-                            </li>
-                              <!-- Add more status options here -->
-                          </ul>
-                      </div>
-                    </div>
-                    
+        <div class="col-span-6 sm:col-span-5 bg-teal-100 rounded-xl overflow-y-scroll h-100">
+          <div class="fixed  bg-teal-100 pb-2 w-180 px-6 rounded-lg shadow-lg z-20 flex justify-between items-center">
+            <h1 class="text-black text-left ml-2 capitalize mt-2 px-3 py-1 font-medium text-3xl">tasks</h1>'
+            <div class="mr-2 mt-3">
 
-                    <!-- comment -->
-                    <div class="mx-4 relative inline-block text-gray-600">
-                      <!-- Button to Open Comment Popover -->
-                      <button  class="mx-4 text-gray-600 hover:text-gray-800 focus:outline-none comment-dropdown-button"  >
-                          <a>
-                              <img src="{% static 'img/comment.png'%}" alt="comments" class="h-8 w-8">
-                          </a>
-                      </button>
-                      <!-- Comment Popover -->
-                      <div class="hidden absolute z-10 mt-2 -ml-40 w-72 bg-white border border-gray-300 shadow-lg rounded-lg comment-dropdown" >
-                          <!-- Display Existing Comments -->
-                          <div class="px-4 py-2 border-b border-gray-300">
-                              <p class="text-gray-600">Comment 1</p>
-                              <p class="text-gray-600">Comment 2</p>
-                              <!-- Display more comments here -->
-                          </div>
-                          <!-- Add New Comment Section -->
-                          <div class="px-4 py-2">
-                              <textarea id="newComment" class="w-full px-2 py-1 border border-gray-300 rounded" placeholder="Add a new comment"></textarea>
-                              <button  id="addCommentButton" class="mt-2 bg-blue-500 text-white rounded px-4 py-1 hover:bg-blue-600 focus:outline-none">Add Comment</button>
-                          </div>
-                      </div>
-                    </div>
-
-
-                    <!-- delete -->
-                    <div class="mx-4 relative inline-block text-gray-600">
-                      <a href="#" class=" text-gray-600 hover:text-gray-800 focus:outline-none">
-                        <img src="{% static 'img/delete.png'%}" alt="comments" class="h-8 w-8">
-                        
-                      </a>
-                    </div>
-                    
-                      
-                  </div>
-              </div>
-              <p class="text-gray-600 mx-2 text-md">{{ task.description }}</p>
-              
-              <div class="flex items-center mx-2 mt-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 14h2v-2h-2v2zm0-4h2V7h-2v5z" />
-                  </svg>
-                  <p class="text-gray-700">Due : {{ task.due_date }}</p>
-              </div>
-              <!-- Add more task details as needed -->
-              <div class="mx-2 mt-2 ">
-                {% if task.status == 'pending' %}
-                <p class="px-3 py-1 w-20 bg-red-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
-              {% elif task.status == 'in-progress' %}
-                <p class="px-3 py-1 w-28 bg-orange-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
-              {%else%}
-                <p class="px-3 py-1 w-24 bg-green-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
-              </div>
-              {%endif%}
+              <form method="post" action="/filter/">
+                {%csrf_token %}
+                <label class="text-xl " for="Priority">Priority :</label>
+                <select name="priority" class="mr-4 bg-white rounded-lg border-none text-md shadow-lg " id="Priority" >
+                  {%if f_priority%}
+                    <option value="{{f_priority}}" selected value="{{f_priority}}">{{f_priority}}</option>
+                    <option value="None" >None </option>
+                  {%else%}
+                    <option value="None" selected value="Priority">select priority</option>
+                  {%endif%}
+                  <option value="high">High</option>"
+                  <option value="medium" >Medium</option>
+                  <option value="low" >Low</option>
+                </select>
+                <label class="text-xl " for="status">Status : </label>
+                <select name="status" class="mr-4 bg-white rounded-lg border-none text-md shadow-lg " id="status" >
+                  {%if f_status%}
+                    <option value="{{f_status}}" selected value="{{f_status}}">{{f_status}}</option>
+                    <option value="None" >None </option>
+                  {%else%}
+                    <option value="None" selected value="Priority">select status</option>
+                  {%endif%}
+                  <option value="pending" >Pending </option>
+                  <option value="in-progress" >In-Progress </option>
+                  <option value="completed" >Completed </option>
+                </select>
+                <input type="submit" value="Filter" class="mr-3 text-white font-semibold  tracking-wide rounded-lg my-2 px-2 py-1 bg-teal-500 shadow-lg  hover:shadow-xl active:bg-teal-600 hover:-translate-y-0.5 transform transistion">
+              </form>
             </div>
+          </div>
+
+          {%if count == 0 %}
+              <div class='my-40'>
+                <img src="{% static 'img/empty.png' %}" alt="empty tasks" class="h-24 w-24 mx-auto ">
+                <p class="max-auto text-center" >---- No Tasks ----</p>
+              </div>
+
+          {%endif%}
+          <div class="mt-20 mb-10">
+              {% for task in tasks %}
+              <!-- Task Card -->
+              <div class="mx-4 mt-4 bg-white rounded-lg shadow-lg p-4 relative">
+                <div class="flex justify-between items-center">
+                  <p id="taskTitle" data="{{task.id}}" class="text-xl font-bold text-gray-900">{{ task.title }}</p>
+      
+                    
+                    <div class="flex space-x-2">
+                      {% if task.priority == 'high' %}
+                      <p class="px-2 mt-2 h-6 mx-4 w-12  bg-red-600 rounded-lg font-medium text-md text-white capitalize">{{task.priority}}</p>
+                      {%endif%}
+                      {% if task.priority == 'medium' %}
+                      <p class="px-2 mt-2 h-6 mx-4 w-20 bg-yellow-500 rounded-lg font-medium text-md text-white capitalize">{{task.priority}}</p>
+                      {%endif%}
+                      {%if task.priority == 'low' %}
+                      <p class="px-1 mt-2 h-6 mx-4 w-10 bg-blue-400 rounded-lg font-medium text-md text-white capitalize">{{task.priority}}</p>
+                      {%endif%}
+                  
+                    
+                      <!-- Status Change Dropdown -->
+                      <div class="mx-4 relative inline-block text-gray-600">
+                        <button class="mx-4text-gray-600 hover:text-gray-800 focus:outline-none status-dropdown-button "id="statusDropdownButton">
+                          <img src="{% static 'img/status.png'%}" alt="comments" class="h-8 w-8">
+                        </button>
+                        <!-- Dropdown Content (Status Options) -->
+                        <div class="hidden absolute z-10 mt-2 -ml-16 w-36 bg-white border border-gray-300 shadow-lg rounded-lg status-dropdown" id="statusDropdown">
+                            <ul class="py-2">
+                                <li class="bg-red-100 mx-2 rounded-lg">
+                                  <a href="/tasks/status/{{task.id}}/pending/" class=" text-left py-2 px-4 mt-2">Pending</a>
+                                </li>
+                                <li class="bg-orange-100 mx-2 rounded-lg mt-2">
+                                  <a href="/tasks/status/{{task.id}}/in-progress/" class=" text-left px-4 py-2 mt-2">In-Progress</a>
+                                </li>
+                                <li class="bg-green-100 mx-2 rounded-lg mt-2">
+                                  <a href="/tasks/status/{{task.id}}/completed/" class="text-left px-4 py-2 mt-2">Completed</a>
+                                </li>
+                                
+                                <!-- Add more status options here -->
+                            </ul>
+                        </div>
+                      </div>
+                      
+                      <!-- Priority Change Dropdown -->
+                      <div class="mx-4 relative inline-block text-gray-600">
+                        <button class="mx-4 text-gray-600 hover:text-gray-800 focus:outline-none priority-dropdown-button" >
+                            <img src="{% static 'img/priority.png'%}" alt="priority" class="h-8 w-8">
+                        </button>
+                        <!-- Dropdown Content (Status Options) -->
+                        <div class="hidden absolute z-10 mt-2 -ml-16 w-32 bg-white border border-gray-300 shadow-lg rounded-lg priority-dropdown">
+                            <ul class="py-2">
+                              <li class="bg-red-200 mx-2 rounded-lg mt-2 text-center">
+                                <a href="/tasks/priority/{{task.id}}/high" class="w-full font-medium text-left px-4 py-2">High</a>
+                              </li>
+                              <li class="bg-red-100 mx-2 rounded-lg mt-2 text-center">
+                                <a href="/tasks/priority/{{task.id}}/medium" class="w-full font-medium text-left px-4 py-2">Medium</a>
+                              </li>
+                              <li class="bg-red-50 mx-2 rounded-lg mt-2 text-center">
+                                <a href="/tasks/priority/{{task.id}}/low" class="w-full font-medium text-left px-4 py-2">Low</a>
+                              </li>
+                                <!-- Add more status options here -->
+                            </ul>
+                        </div>
+                      </div>
+                      
+
+                      <!-- comment -->
+                      <div class="mx-4 relative inline-block text-gray-600">
+                        <!-- Button to Open Comment Popover -->
+                        <button  class="mx-4 text-gray-600 hover:text-gray-800 focus:outline-none comment-dropdown-button"  >
+                            <a>
+                                <img src="{% static 'img/comment.png'%}" alt="comments" class="h-8 w-8">
+                            </a>
+                        </button>
+                        <!-- Comment Popover -->
+                        <div class="hidden absolute z-10 mt-2 -ml-40 w-72 h-auto bg-white border border-gray-300 shadow-lg rounded-lg comment-dropdown" >
+                            <!-- Display Existing Comments -->
+                            <div class="px-4 py-2 border-b border-gray-300">
+                                <p class="text-gray-600 bg-gray-200 rounded-lg px-2 py-2 my-2">this is the first comment int he taskify app fo the task one</p>
+                                <p class="text-gray-600 bg-gray-200 rounded-lg px-2 py-2 my-2">Comment 2</p>
+                                <!-- Display more comments here -->
+                            </div>
+                            <!-- Add New Comment Section -->
+                            <div class="px-4 py-2">
+                              <form method="post" action="">
+                                {% csrf_token %}
+                                <input class="mt-2 px-2 py-1 w-full h-auto rounded-lg border-2 border-blue-400 active:border-blue-500" type="textarea" placeholder="Add new comment" name="comment">
+                                <input type="submit" name="Add Comment" class="text-white font-semibold  tracking-wide rounded-lg my-2 px-2 py-1 bg-green-600">
+                              </form>
+                                
+                            </div>
+                        </div>
+                      </div>
+
+
+                      <!-- delete -->
+                      <div class="mx-4 relative inline-block text-gray-600">
+                        <a href="#" class=" text-gray-600 hover:text-gray-800 focus:outline-none">
+                          <img src="{% static 'img/delete.png'%}" alt="comments" class="h-8 w-8">
+                          
+                        </a>
+                      </div>
+                      
+                        
+                    </div>
+                </div>
+                <p class="text-gray-600 mx-2 text-md">{{ task.description }}</p>
+                
+                <div class="flex items-center mx-2 mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 14h2v-2h-2v2zm0-4h2V7h-2v5z" />
+                    </svg>
+                    <p class="text-gray-700">Due : {{ task.due_date }}</p>
+                </div>
+                <!-- Add more task details as needed -->
+                <div class="mx-2 mt-2 ">
+                  {% if task.status == 'pending' %}
+                  <p class="px-3 py-1 w-20 bg-red-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
+                  {%endif%}
+                  {% if task.status == 'in-progress' %}
+                  <p class="px-3 py-1 w-28 bg-orange-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
+                  {%endif%}
+                  {%if task.status == 'completed' %}
+                  <p class="px-3 py-1 w-24 bg-green-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
+                  {%endif%}
+                </div>
+                
+              
+              </div>
             
+            {% endfor %}
           </div>
           
-          {% endfor %}
         </div>
       </div>
     </div>
@@ -215,19 +275,19 @@
       
 
     {%else%}
-      <section class="text-gray-600 body-font">
+      <section class="text-gray-600 body-font mt-10">
         <div class="container mx-auto flex px-5 py-18 md:flex-row flex-col items-center">
           <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 class="title-font tracking-wide sm:text-4xl text-3xl mb-4 font-medium text-white">One Stop to organize
-              <br class="hidden lg:inline-block">your Tasks 
+            <h1 class="title-font tracking-wide sm:text-6xl text-3xl mb-4 font-medium text-white">One stop to organize
+              <br class="hidden lg:inline-block">your <span class="font-bold text-red-600">Tasks</span> 
             </h1>
             <div class="flex justify-center mt-5">
-              <a href="/profiles/register/" class="inline-flex mr-2 text-black tracking-wider bg-blue-300 font-medium rounded-lg border-0 py-2 px-4  focus:outline-none hover:bg-blue-200 text-lg">Register</a>
-              <a href="/profiles/login/" class="inline-flex mx-2   text-black tracking-wider bg-red-500 font-medium rounded-lg border-0 py-2 px-6  focus:outline-none hover:bg-red-400 text-lg">Login</a>
+              <a href="/profiles/register/" class="inline-flex mr-2 text-black tracking-wider bg-blue-300 font-medium rounded-lg border-0 py-2 px-4 shadow-xl hover:-translate-y-0.5 transform transistion hover:shadow-2xl active:bg-blue-400 focus:outline-none hover:bg-blue-200 text-lg">Register</a>
+              <a href="/profiles/login/" class="inline-flex mx-2   text-black tracking-wider bg-red-500 font-medium rounded-lg border-0 py-2 px-6 shadow-xl hover:-translate-y-0.5 transform transistion active:bg-red-600   focus:outline-none hover:bg-red-400 text-lg">Login</a>
             </div>
           </div>
           <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img class="object-cover object-center rounded" alt="hero" src="{% static 'img/home_hero.png'%}">
+            <img class="object-cover object-center " alt="hero" src="{% static 'img/home_hero.png'%}">
           </div>
         </div>
       </section>

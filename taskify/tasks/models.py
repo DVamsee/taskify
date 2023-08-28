@@ -16,7 +16,7 @@ class Task(models.Model):
         ('medium','medium'),
         ('high','high'),
     ]
-    prority = models.CharField(max_length=15,choices=prority_choices,default='medium')
+    priority = models.CharField(max_length=15,choices=prority_choices,default='medium')
 
     category_choices = [
         ('personal','personal'),
