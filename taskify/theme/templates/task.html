@@ -1,0 +1,85 @@
+{% extends 'home.html' %}
+
+{% load static%}
+
+{%block head %}
+	<title>Taskify - Add task</title>
+{%endblock %}
+
+{% block task %}
+    <form method="post" action="/tasks/add/task/">
+      {% csrf_token %}
+        <div class="mx-4 mt-4 bg-white rounded-lg shadow-lg p-4 relative">
+          <p class=" border-b-2 pb-2 my-2 font-medium text-2xl">Add new task</p>
+            <div class="flex justify-between items-center">
+              <div>
+                <label for="title" class="text-xl font-medium">Title:</label>
+                <input class="mr-4 my-2 bg-white rounded-lg border-none text-md shadow-lg " id="title" type="text" placeholder="Enter task title" name="title" id="taskTitle" >
+  
+              </div>
+              
+                
+                <div class="flex space-x-2">
+
+                    <label class="text-xl pt-2 font-medium " for="Priority">Priority :</label>
+                    <select name="priority" class=" bg-white rounded-lg border-none text-md shadow-lg " id="Priority" >
+                      {%if f_priority%}
+                        <option value="{{f_priority}}" selected value="{{f_priority}}">{{f_priority}}</option>
+                        <option value="None" >None </option>
+                      {%else%}
+                        <option value="None" selected value="Priority">select priority</option>
+                      {%endif%}
+                      <option value="high">High</option>"
+                      <option value="medium" >Medium</option>
+                      <option value="low" >Low</option>
+                    </select>
+                    <label class="ml-1 text-xl pt-2 font-medium " for="status">Status : </label>
+                    <select name="status" class="mr-4 bg-white rounded-lg border-none text-md shadow-lg " id="status" >
+                      {%if f_status%}
+                        <option value="{{f_status}}" selected value="{{f_status}}">{{f_status}}</option>
+                        <option value="None" >None </option>
+                      {%else%}
+                        <option value="None" selected value="Priority">select status</option>
+                      {%endif%}
+                      <option value="pending" >Pending </option>
+                      <option value="in-progress" >In-Progress </option>
+                      <option value="completed" >Completed </option>
+                    </select>
+              
+                
+                  <!-- Status Change Dropdown -->
+                  
+                  <!-- Priority Change Dropdown -->
+                  
+                  <!-- comment -->
+
+                  <!-- delete -->
+                  
+                  
+                    
+                </div>
+            </div>
+            <label class="text-xl my-4 font-medium capitalize" for="description">description : </label>
+            <input id="description" class="mr-4 bg-white rounded-lg border-none text-md shadow-lg " placeholder="enter task description" type="text" name="description">
+            
+            <div class="flex items-center mt-2">
+                
+                <label class="text-xl pt-2 font-medium" for="due" >Due date:</label>
+                <input id="due" type="datetime-local" class="mx-2 bg-white rounded-lg border-none text-md shadow-lg " name="due">
+            </div>
+            <!-- Add more task details as needed -->
+            
+            <!--form submit -->
+            <div class="mt-2">
+              <a href="/" type="submit" value="Filter" class="mr-3 text-white font-semibold  tracking-wide rounded-lg my-2 px-2 py-1 bg-red-400 shadow-lg  hover:shadow-xl active:bg-red-500 hover:-translate-y-0.5 transform transistion capitalize">cancel</a>
+              <input type="submit" value="Add" class="mr-3  text-white font-semibold  tracking-wide rounded-lg my-2 px-3 py-1 bg-teal-500 shadow-lg  hover:shadow-xl active:bg-teal-600 hover:-translate-y-0.5 transform transistion">
+              
+            </div>
+            {%for msg in messages%}
+              <p class="my-2 text-lg ">{{msg}}</p>
+            {%endfor %}
+          </div>
+
+    </form>
+    
+{% endblock %}

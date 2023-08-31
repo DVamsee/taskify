@@ -40,3 +40,8 @@ def filter(request):
             tasks = Task.objects.filter(user_id = request.user.id,status=status,priority=priority).order_by('created_at')
             count = len(tasks)
             return render(request,'home.html',{'tasks':tasks,'f_priority':priority,'count':count,'f_status':status})
+
+@login_required
+def add_task(request):
+
+    return render(request,'task.html')

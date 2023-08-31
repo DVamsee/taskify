@@ -17,7 +17,7 @@
 
         {% if user.is_authenticated %}
             <h2 class="inline-flex items-center mx-3 capitalize text-white font-medium text-xl py-1 px-3 focus:outline-none  mt-4 md:mt-0" >{{user.first_name}}</h2>
-            <a href="/profiles/logout/" class="inline-flex items-center mx-3 bg-red-300 border-0 py-1 px-3 focus:outline-none hover:bg-red-200 rounded text-base mt-4 md:mt-0">Logout
+            <a href="/profiles/logout/" class="inline-flex items-center mx-3 bg-red-300 border-0 py-1 px-3 active:bg-red-400 focus:outline-none hover:bg-red-200 rounded-lg text-base mt-4 md:mt-0">Logout
                 
             </a>
 
@@ -41,7 +41,7 @@
             <h1 class="mx-4 my-3 text-gray-900 font-medium text-2xl"> Mail : <span class=" text-black font-medium ">{{user.email}}</span> </h1>
             <div class="ml-2 my-4 mt-5">
               <a href="#" class="inline-flex ml-2 text-white tracking-wider bg-blue-500 font-medium capitalize rounded-lg border-0 py-1 px-4 shadow-lg  focus:outline-none hover:-translate-y-0.5 transform transistion active:bg-blue-400 hover:bg-blue-300 hover:shadow-xl text-lg">edit </a>
-              <a href="#" class="inline-flex mx-2   text-white tracking-wider bg-red-600 font-medium rounded-lg border-0 py-1 px-4 capitalize shadow-lg  focus:outline-none hover:-translate-y-0.5 transform transistion active:bg-red-400 hover:bg-red-500 hover:shadow-xl text-lg">Add task</a>
+              <a href="/add/task/" class="inline-flex mx-2   text-white tracking-wider bg-red-600 font-medium rounded-lg border-0 py-1 px-4 capitalize shadow-lg  focus:outline-none hover:-translate-y-0.5 transform transistion active:bg-red-400 hover:bg-red-500 hover:shadow-xl text-lg">Add task</a>
             </div>
 
           </div>
@@ -96,7 +96,6 @@
           <div class="fixed  bg-teal-100 pb-2 w-180 px-6 rounded-lg shadow-lg z-20 flex justify-between items-center">
             <h1 class="text-black text-left ml-2 capitalize mt-2 px-3 py-1 font-medium text-3xl">tasks</h1>'
             <div class="mr-2 mt-3">
-
               <form method="post" action="/filter/">
                 {%csrf_token %}
                 <label class="text-xl " for="Priority">Priority :</label>
@@ -136,6 +135,7 @@
 
           {%endif%}
           <div class="mt-20 mb-10">
+              {% block task %}{%endblock%}
               {% for task in tasks %}
               <!-- Task Card -->
               <div class="mx-4 mt-4 bg-white rounded-lg shadow-lg p-4 relative">
@@ -232,7 +232,7 @@
 
                       <!-- delete -->
                       <div class="mx-4 relative inline-block text-gray-600">
-                        <a href="#" class=" text-gray-600 hover:text-gray-800 focus:outline-none">
+                        <a href="/tasks/delete/{{task.id}}/" class=" text-gray-600 hover:text-gray-800 focus:outline-none">
                           <img src="{% static 'img/delete.png'%}" alt="comments" class="h-8 w-8">
                           
                         </a>
@@ -258,7 +258,7 @@
                   <p class="px-3 py-1 w-28 bg-orange-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
                   {%endif%}
                   {%if task.status == 'completed' %}
-                  <p class="px-3 py-1 w-24 bg-green-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
+                  <p class="pl-4 pr-3  py-1 w-28 bg-green-600 rounded-lg font-medium text-md text-white capitalize">{{task.status}}</p>
                   {%endif%}
                 </div>
                 
