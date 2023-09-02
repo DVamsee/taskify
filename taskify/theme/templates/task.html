@@ -14,7 +14,7 @@
             <div class="flex justify-between items-center">
               <div>
                 <label for="title" class="text-xl font-medium">Title:</label>
-                <input class="mr-4 my-2 bg-white rounded-lg border-none text-md shadow-lg " id="title" type="text" placeholder="Enter task title" name="title" id="taskTitle" >
+                <input  class="mr-4 my-2 bg-white rounded-lg border-none text-md shadow-lg " id="title" type="text" placeholder="title" name="title" id="taskTitle" >
   
               </div>
               
@@ -65,9 +65,13 @@
             <div class="flex items-center mt-2">
                 
                 <label class="text-xl pt-2 font-medium" for="due" >Due date:</label>
-                <input id="due" type="datetime-local" class="mx-2 bg-white rounded-lg border-none text-md shadow-lg " name="due">
+                <input id="due" type="datetime-local" class="mx-2 bg-white rounded-lg border-none text-md shadow-lg " name="due_date">
             </div>
             <!-- Add more task details as needed -->
+
+            {%for msg in messages%}
+              <p class="my-2 text-md font-thin text-red-600 ">*{{msg}}</p>
+            {%endfor %}
             
             <!--form submit -->
             <div class="mt-2">
@@ -75,9 +79,7 @@
               <input type="submit" value="Add" class="mr-3  text-white font-semibold  tracking-wide rounded-lg my-2 px-3 py-1 bg-teal-500 shadow-lg  hover:shadow-xl active:bg-teal-600 hover:-translate-y-0.5 transform transistion">
               
             </div>
-            {%for msg in messages%}
-              <p class="my-2 text-lg ">{{msg}}</p>
-            {%endfor %}
+            
           </div>
 
     </form>

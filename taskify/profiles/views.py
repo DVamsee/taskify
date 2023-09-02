@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import User_Registration, Login
+from .forms import User_Registration, Login, EditProfile
 from django.contrib.auth.models import auth
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
@@ -42,3 +43,13 @@ def login(request, *args, **kwargs):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+@login_required
+def edit_profile(request):
+    form = EditProfile(request.POST or None)
+    if form:
+        if form.is_valid():
+            pass
+        
+    return render(request,'edit_profile.html',{'form':form})
