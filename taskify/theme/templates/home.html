@@ -25,15 +25,16 @@
 
      </div>
      
+     
     </div>
 </header>
 
   <div class="mt-2  ">
     {% if user.is_authenticated %}
     <div class="h-full">
-      <div class="mx-1 sm:mx-4 md:mx-6 grid grid-cols-7 gap-4 sm:h-5/6">
+      <div class="mx-1 sm:mx-4 md:mx-6 grid grid-cols-7 gap-4 md:gap-4 sm:h-5/6">
       
-        <div class="hidden  col-span-6 sm:col-span-2 sm:grid grid-flow-row gap-4 h-80">
+        <div class="hidden col-span-6 md:col-span-2 md:grid grid-flow-row gap-4 h-80">
           <div class="bg-stone-200 rounded-xl">
             <p class="text-black text-left ml-2 capitalize mt-2 px-3 py-1 font-medium text-3xl">profile</p>
             <img class="my-5 mx-auto  h-24 w-24 rounded-full" src="{% static 'img/profile.png'%}" alt="profile picture" >
@@ -92,10 +93,65 @@
         </div>
 
         <!--tasks-->
-        <div class="col-span-6 sm:col-span-5 bg-teal-100 rounded-xl overflow-y-scroll h-100">
-          <div class="fixed  bg-teal-100 pb-2 w-180 px-6 rounded-lg shadow-lg z-20 flex justify-between items-center">
-            <h1 class="text-black text-left ml-2 capitalize mt-2 px-3 py-1 font-medium text-3xl">tasks</h1>'
-            <div class="mr-2 mt-3">
+        <div class="col-span-6 sm:col-span-5 w-full mx-7 bg-teal-100 rounded-xl overflow-y-scroll h-100">
+          <div class="fixed pb-2 px-6 rounded-lg  z-20 flex items-center  justify-between ">
+            <!--mobile filter-->
+            <div class="blocp-4 mx-2 ml-4 mt-5 mb-5 md:hidden"> 
+              <button id="mobile-filter-button"  class="shadow-[0px_0px_20px_1px_#48bb78] text-green-600 font-medium bg-green-100 p-2 rounded-lg">
+                  <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg>
+              </button>
+            </div>
+
+            <div id="mobile-filter-overlay" class="hidden inset-0 bg-white z-30 mr-0 ml-4 mt-3 ">
+              <button id="mobile-filter-close-button" class="text-white ">
+                <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+              <form method="post" action="/filter/">
+                {%csrf_token %}
+                <li >
+                  <ul>
+                    <label class="text-xl " for="Priority">Priority :</label>
+                    <select name="priority" class="mr-4 bg-white rounded-lg border-none text-md shadow-lg " id="Priority" >
+                      {%if f_priority%}
+                        <option value="{{f_priority}}" selected value="{{f_priority}}">{{f_priority}}</option>
+                        <option value="None" >None </option>
+                      {%else%}
+                        <option value="None" selected value="Priority">select priority</option>
+                      {%endif%}
+                      <option value="high">High</option>"
+                      <option value="medium" >Medium</option>
+                      <option value="low" >Low</option>
+                    </select>
+                  </ul>
+                  <ul>
+                    <label class="text-xl " for="status">Status : </label>
+                    <select name="status" class="mr-4 bg-white rounded-lg border-none text-md shadow-lg " id="status" >
+                      {%if f_status%}
+                        <option value="{{f_status}}" selected value="{{f_status}}">{{f_status}}</option>
+                        <option value="None" >None </option>
+                      {%else%}
+                        <option value="None" selected value="Priority">select status</option>
+                      {%endif%}
+                      <option value="pending" >Pending </option>
+                      <option value="in-progress" >In-Progress </option>
+                      <option value="completed" >Completed </option>
+                    </select>
+                  </ul>
+                  <ul>
+                    <input type="submit" value="Filter" class="mr-3 text-white font-semibold  tracking-wide rounded-lg my-2 px-2 py-1 bg-teal-500 shadow-lg  hover:shadow-xl active:bg-teal-600 hover:-translate-y-0.5 transform transistion">
+                  </ul>
+                </li>
+                
+              </form>
+            </div>
+            <h1 class="text-black text-left ml-2 capitalize mt-2 px-3 py-1 font-medium text-3xl">tasks</h1>
+
+            <!--desktop filter-->
+            <div class="hidden md:flex mr-0 ml-4 mt-3 ">
               <form method="post" action="/filter/">
                 {%csrf_token %}
                 <label class="text-xl " for="Priority">Priority :</label>

@@ -73,17 +73,20 @@ function renderCalendar() {
     const daysInMonth = lastDay.getDate();
 
     currentMonthYear.textContent = `${new Intl.DateTimeFormat('en-US', { month: 'long' }).format(currentDate)} ${year}`;
-
+    
     let calendarHTML = "";
-
     let dayCounter = 1;
     for (let i = 0; i < 6; i++) {
-        calendarHTML += "<tr>";
+        calendarHTML += "<tr >";
         for (let j = 0; j < 7; j++) {
             if ((i === 0 && j < firstDay.getDay()) || dayCounter > daysInMonth) {
-                calendarHTML += "<td class='px-2 py-1 '></td>";
+                calendarHTML += "<td class='px-2 py-2 '></td>";
             } else {
-                calendarHTML += `<td class="px-2 py-1 ">${dayCounter}</td>`;
+                let rmonth = month + 1;
+                let targeturl = "/filter/calender/" + dayCounter + "/" + rmonth + "/" + year +"/";
+                console.log(targeturl);
+                calendarHTML += `<td class=" px-2 py-2 text-center "><a class='text-md px-2 py-1 bg-purple-200 rounded-full hover:bg-purple-300 hover:text-lg' href=${targeturl}>${dayCounter}</a></td>`;
+                console.log(targeturl);
                 dayCounter++;
             }
         }
@@ -105,3 +108,28 @@ nextMonthButton.addEventListener("click", () => {
 
 renderCalendar();
 
+
+const mobileMenuButton = document.getElementById('mobile-filter-button');
+const mobileMenuCloseButton = document.getElementById('mobile-filter-close-button');
+const mobileMenuOverlay = document.getElementById('mobile-filter-overlay');
+const mobileMenuItems = mobileMenuOverlay.querySelectorAll('a');
+
+mobileMenuButton.addEventListener('click', () => {
+    mobileMenuOverlay.classList.toggle('hidden');
+});
+
+mobileMenuCloseButton.addEventListener('click', () => {
+    mobileMenuOverlay.classList.add('hidden');
+});
+
+mobileMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        mobileMenuOverlay.classList.add('hidden');
+    });
+});
+
+document.addEventListener('click', (event) => {
+    if (!mobileMenuButton.contains(event.target) && !mobileMenuOverlay.contains(event.target)) {
+        mobileMenuOverlay.classList.add('hidden');
+    }
+});

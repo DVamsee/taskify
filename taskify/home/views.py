@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from tasks.models import Task,Comment
 from django.contrib.auth.decorators import login_required
 from rest_framework.renderers import JSONRenderer
+import datetime
 
 
 
@@ -41,4 +42,19 @@ def filter(request):
             tasks = Task.objects.filter(user_id = request.user.id,status=status,priority=priority).order_by('created_at')
             count = len(tasks)
             return render(request,'home.html',{'tasks':tasks,'f_priority':priority,'count':count,'f_status':status})
+
+
+
+@login_required
+def calender_tasks(request,day=None,month=None,year=None):
+    f_date = datetime.date(year,month,day)
+    tasks = Task.objects.filter(user_id = request.user)
+    comments = Comment.objects.filter(user_id = request.user)
+    tasks_dict = []
+    for task in tasks:
+        t_date = datetime.date(task.due_date.year,task.due_date.month,task.due_date.day)
+        if f_date <= t_date:
+            tasks_dict.append(task)
+    count = len(tasks_dict)  
+    return render(request, 'home.html',{'tasks':tasks_dict,'count':count,'comments':comments})
 
