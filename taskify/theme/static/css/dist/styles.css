@@ -1497,6 +1497,16 @@ select {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+
+.text-red-900 {
+  --tw-text-opacity: 1;
+  color: rgb(127 29 29 / var(--tw-text-opacity));
+}
+
 .shadow-\[0px_0px_20px_1px_\#48bb78\] {
   --tw-shadow: 0px 0px 20px 1px #48bb78;
   --tw-shadow-colored: 0px 0px 20px 1px var(--tw-shadow-color);

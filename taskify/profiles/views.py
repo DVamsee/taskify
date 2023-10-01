@@ -23,7 +23,6 @@ def register(request, *args, **kwargs):
         
 #        messages.success(request,'Registration was successful')
         return redirect('/')
-
     return render(request, 'registration.html',{'form':form})
 
 def login(request, *args, **kwargs):

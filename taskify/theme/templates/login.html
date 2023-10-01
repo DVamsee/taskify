@@ -32,10 +32,16 @@
             <input type="submit" class="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in"><span class="mr-2 uppercase">
           </div>
         </form>
-        <ul class="messages">
-          {%for i in  messages%}
-          <p class='text-red-600 mt-2 '>{{i}}</p>
-          {% endfor %}
+        <ul class="messages mt-2 ">
+          {% if form.errors %}
+                {% for field in form %}
+
+                    {% for error in field.errors %}
+                        <p class="text-red-900">{{field.label}}: <span class="text-red=700">{{ error|escape }}</span></p>  
+                    {% endfor %}
+
+                {% endfor %}
+          {% endif %}
         </ul>
       </div>
     </div>
